@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vasanth Vinayagamoorthi — .NET Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7F77DD;
+      --purple-light: #EEEDFE;
+      --purple-dark: #3C3489;
+      --teal: #1D9E75;
+      --teal-light: #E1F5EE;
+      --coral: #D85A30;
+      --coral-light: #FAECE7;
+      --pink: #D4537E;
+      --pink-light: #FBEAF0;
+      --amber: #EF9F27;
+      --amber-light: #FAEEDA;
+      --bg: #0f0e17;
+      --surface: #1a1929;
+      --card: #211f35;
+      --text: #fffffe;
+      --muted: #a7a9be;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,14,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--purple), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 40%, rgba(127,119,221,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 60%, rgba(29,158,117,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--purple-light);
+      color: var(--purple-dark);
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      color: var(--muted); font-size: 1.1rem;
+      max-width: 480px; margin: 0 auto 2.5rem;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, var(--purple), var(--teal));
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem 2rem;
+      border-radius: 999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700; margin-bottom: 2.5rem;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--purple); transform: translateY(-2px); }
+    .skill-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 0.75rem;
+    }
+    .skill-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .skill-card p { font-size: 0.78rem; color: var(--muted); }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; color: var(--text);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .contact-card:hover { transform: translateY(-2px); }
+    .contact-card:hover.linkedin { border-color: #0A66C2; }
+    .contact-card:hover.github   { border-color: #9b59b6; }
+    .contact-card:hover.insta    { border-color: #E1306C; }
+    .contact-card:hover.gmail    { border-color: #EA4335; }
+    .contact-card:hover.phone    { border-color: var(--teal); }
+
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 22px; height: 22px; }
+    .contact-icon.linkedin { background: rgba(10,102,194,0.15); color: #0A66C2; }
+    .contact-icon.github   { background: rgba(155,89,182,0.15); color: #b39ddb; }
+    .contact-icon.insta    { background: rgba(225,48,108,0.15); color: #E1306C; }
+    .contact-icon.gmail    { background: rgba(234,67,53,0.15);  color: #EA4335; }
+    .contact-icon.phone    { background: rgba(29,158,117,0.15); color: var(--teal); }
+
+    .contact-info p { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.15rem; }
+    .contact-info span { font-size: 0.9rem; font-weight: 500; word-break: break-all; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">VV</div>
+    <div class="nav-links">
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-tag">Available for Work</div>
+      <h1>Hi, I'm <span>Vasanth</span><br/>Vinayagamoorthi</h1>
+      <p class="hero-sub">.NET Developer crafting scalable, clean, and performant backend solutions.</p>
+      <a href="#contact" class="hero-cta">Get in touch →</a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">What I work with</p>
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon" style="background:rgba(127,119,221,0.15);">
+          <!-- .NET icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#7F77DD" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <path d="M8 12h8M12 8v8"/>
+          </svg>
+        </div>
+        <h3>ASP.NET Core</h3>
+        <p>Web APIs & MVC</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon" style="background:rgba(29,158,117,0.15);">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1D9E75" stroke-width="1.8">
+            <ellipse cx="12" cy="12" rx="9" ry="4"/>
+            <path d="M3 12c0 2.21 4.03 4 9 4s9-1.79 9-4"/>
+            <path d="M3 6v12"/>
+            <path d="M21 6v12"/>
+          </svg>
+        </div>
+        <h3>SQL Server</h3>
+        <p>Database & queries</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon" style="background:rgba(239,159,39,0.15);">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#EF9F27" stroke-width="1.8">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>Entity Framework</h3>
+        <p>ORM & migrations</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon" style="background:rgba(216,90,48,0.15);">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#D85A30" stroke-width="1.8">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <h3>REST APIs</h3>
+        <p>Design & integration</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon" style="background:rgba(212,83,126,0.15);">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#D4537E" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12l2.5 2.5L16 9"/>
+          </svg>
+        </div>
+        <h3>C#</h3>
+        <p>Core language</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon" style="background:rgba(127,119,221,0.12);">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#7F77DD" stroke-width="1.8">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-4 0v2"/>
+          </svg>
+        </div>
+        <h3>Azure</h3>
+        <p>Cloud deployment</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Let's connect</p>
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact-grid">
+
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" class="contact-card linkedin">
+        <div class="contact-icon linkedin">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </div>
+        <div class="contact-info">
+          <p>LinkedIn</p>
+          <span>YOUR_LINKEDIN</span>
+        </div>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/YOUR_GITHUB" target="_blank" class="contact-card github">
+        <div class="contact-icon github">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </div>
+        <div class="contact-info">
+          <p>GitHub</p>
+          <span>YOUR_GITHUB</span>
+        </div>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/lakshu_vasanth" target="_blank" class="contact-card insta">
+        <div class="contact-icon insta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="contact-info">
+          <p>Instagram</p>
+          <span>lakshu_vasanth</span>
+        </div>
+      </a>
+
+      <!-- Gmail -->
+      <a href="mailto:vinayavasanth@gmail.com" class="contact-card gmail">
+        <div class="contact-icon gmail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="contact-info">
+          <p>Gmail</p>
+          <span>vinayagavasanth@gmail.com</span>
+        </div>
+      </a>
+
+      <!-- Phone -->
+      <a href="tel:+91XXXXXXXXXX" class="contact-card phone">
+        <div class="contact-icon phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <div class="contact-info">
+          <p>Mobile</p>
+          <span>+91 6374924961</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>Built by Vasanth Vinayagamoorthi &nbsp;·&nbsp; .NET Developer</p>
+  </footer>
+
+</body>
+</html>
