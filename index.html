@@ -3,385 +3,1147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vasanth Vinayagamoorthi — .NET Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Portfolio of Vasanth Vinayagamoorthi, Senior Software Engineer specializing in C#, ASP.NET Core, REST APIs, SQL Server, enterprise resilience, monitoring, and security platforms." />
+  <title>Vasanth Vinayagamoorthi | Senior Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --purple: #7F77DD;
-      --purple-light: #EEEDFE;
-      --purple-dark: #3C3489;
-      --teal: #1D9E75;
-      --teal-light: #E1F5EE;
-      --coral: #D85A30;
-      --coral-light: #FAECE7;
-      --pink: #D4537E;
-      --pink-light: #FBEAF0;
-      --amber: #EF9F27;
-      --amber-light: #FAEEDA;
-      --bg: #0f0e17;
-      --surface: #1a1929;
-      --card: #211f35;
-      --text: #fffffe;
-      --muted: #a7a9be;
-      --border: rgba(255,255,255,0.08);
+      --ink: #f8fafc;
+      --text: #cbd5e1;
+      --muted: #94a3b8;
+      --line: rgba(148, 163, 184, 0.2);
+      --panel: rgba(15, 23, 42, 0.72);
+      --panel-solid: #111827;
+      --bg: #080b12;
+      --blue: #5ba8ff;
+      --cyan: #22d3ee;
+      --gold: #f4c76b;
+      --green: #51d88a;
+      --rose: #fb7185;
+      --white: #ffffff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
       min-height: 100vh;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(15,14,23,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
-    }
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      background: linear-gradient(135deg, var(--purple), var(--teal));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .nav-links { display: flex; gap: 1.5rem; }
-    .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 0.875rem; font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
-
-    /* HERO */
-    .hero {
-      min-height: 90vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 4rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(ellipse 60% 50% at 20% 40%, rgba(127,119,221,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 80% 60%, rgba(29,158,117,0.15) 0%, transparent 70%);
+        radial-gradient(circle at 15% 0%, rgba(91, 168, 255, 0.22), transparent 32rem),
+        radial-gradient(circle at 88% 10%, rgba(244, 199, 107, 0.14), transparent 28rem),
+        linear-gradient(180deg, #080b12 0%, #101522 48%, #080b12 100%);
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
       pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.82), transparent 80%);
     }
-    .hero-tag {
-      display: inline-block;
-      background: var(--purple-light);
-      color: var(--purple-dark);
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.35rem 1rem;
-      border-radius: 999px;
-      margin-bottom: 1.5rem;
+
+    a {
+      color: inherit;
     }
-    .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      margin-bottom: 1rem;
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
     }
-    .hero h1 span {
-      background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 11, 18, 0.82);
+      backdrop-filter: blur(18px);
     }
-    .hero-sub {
-      color: var(--muted); font-size: 1.1rem;
-      max-width: 480px; margin: 0 auto 2.5rem;
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
     }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: linear-gradient(135deg, var(--purple), var(--teal));
-      color: #fff;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
       text-decoration: none;
-      padding: 0.75rem 2rem;
-      border-radius: 999px;
-      font-weight: 600; font-size: 0.95rem;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .hero-cta:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    /* SECTIONS */
-    section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--purple);
-      margin-bottom: 0.5rem;
-    }
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 700; margin-bottom: 2.5rem;
+      font-weight: 900;
     }
 
-    /* SKILLS */
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(244, 199, 107, 0.45);
+      border-radius: 8px;
+      color: #111827;
+      background: linear-gradient(135deg, var(--gold), #fff1b8);
+      box-shadow: 0 14px 32px rgba(244, 199, 107, 0.16);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .hero {
+      padding: 84px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: clamp(30px, 5vw, 58px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(17, 24, 39, 0.72)),
+        var(--panel-solid);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      margin-bottom: 18px;
+      padding: 7px 10px;
+      border: 1px solid rgba(244, 199, 107, 0.42);
+      border-radius: 8px;
+      color: var(--gold);
+      background: rgba(244, 199, 107, 0.1);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--ink);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin-bottom: 20px;
+      font-size: clamp(2.55rem, 6vw, 5rem);
+      font-weight: 900;
+    }
+
+    .accent {
+      color: var(--gold);
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-bottom: 30px;
+      color: #dbeafe;
+      font-size: clamp(1rem, 2vw, 1.16rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 16px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #0f172a;
+      background: linear-gradient(135deg, var(--gold), #fff2ba);
+    }
+
+    .button-secondary {
+      color: var(--ink);
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .button svg,
+    .contact-link svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .profile-panel {
+      min-height: 100%;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+        rgba(15, 23, 42, 0.78);
+      box-shadow: var(--shadow);
+    }
+
+    .profile-top {
+      display: grid;
+      gap: 14px;
+    }
+
+    .avatar {
+      width: 84px;
+      height: 84px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #111827;
+      background: linear-gradient(135deg, #e8f1ff, var(--cyan));
+      font-size: 1.6rem;
+      font-weight: 900;
+    }
+
+    .profile-panel h2 {
+      font-size: 1.35rem;
+      margin-bottom: 6px;
+    }
+
+    .profile-panel p {
+      color: var(--muted);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.42rem;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    section {
+      padding: 52px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.65rem, 3vw, 2.45rem);
+      font-weight: 900;
+    }
+
+    .section-heading p {
+      max-width: 610px;
+      color: var(--muted);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .story {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .story p + p {
+      margin-top: 16px;
+    }
+
+    .strengths {
+      display: grid;
+      gap: 12px;
+    }
+
+    .strength,
+    .skill,
+    .project,
+    .timeline-item,
+    .education-card,
+    .contact-link {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.035)),
+        rgba(15, 23, 42, 0.72);
+    }
+
+    .strength {
+      padding: 18px;
+    }
+
+    .strength h3 {
+      margin-bottom: 7px;
+      font-size: 1rem;
+    }
+
+    .strength p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
-    .skill-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .skill-card:hover { border-color: var(--purple); transform: translateY(-2px); }
-    .skill-icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; margin-bottom: 0.75rem;
-    }
-    .skill-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .skill-card p { font-size: 0.78rem; color: var(--muted); }
 
-    /* CONTACT */
-    .contact-grid {
+    .skill {
+      min-height: 168px;
+      padding: 20px;
+    }
+
+    .skill-kicker {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--gold);
+      font-size: 0.74rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .skill h3 {
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+    }
+
+    .skill p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .timeline {
+      position: relative;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
+      gap: 14px;
     }
-    .contact-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.25rem 1.5rem;
-      display: flex; align-items: center; gap: 1rem;
-      text-decoration: none; color: var(--text);
-      transition: border-color 0.2s, transform 0.2s;
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 24px;
+      padding: 22px;
     }
-    .contact-card:hover { transform: translateY(-2px); }
-    .contact-card:hover.linkedin { border-color: #0A66C2; }
-    .contact-card:hover.github   { border-color: #9b59b6; }
-    .contact-card:hover.insta    { border-color: #E1306C; }
-    .contact-card:hover.gmail    { border-color: #EA4335; }
-    .contact-card:hover.phone    { border-color: var(--teal); }
 
-    .contact-icon {
-      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
+    .timeline-meta {
+      color: var(--gold);
+      font-weight: 900;
     }
-    .contact-icon svg { width: 22px; height: 22px; }
-    .contact-icon.linkedin { background: rgba(10,102,194,0.15); color: #0A66C2; }
-    .contact-icon.github   { background: rgba(155,89,182,0.15); color: #b39ddb; }
-    .contact-icon.insta    { background: rgba(225,48,108,0.15); color: #E1306C; }
-    .contact-icon.gmail    { background: rgba(234,67,53,0.15);  color: #EA4335; }
-    .contact-icon.phone    { background: rgba(29,158,117,0.15); color: var(--teal); }
 
-    .contact-info p { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.15rem; }
-    .contact-info span { font-size: 0.9rem; font-weight: 500; word-break: break-all; }
+    .timeline-meta span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 2rem;
+    .timeline-item h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+    }
+
+    .bullet-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+      list-style: none;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--text);
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      top: 0.68em;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 8px;
+      background: var(--cyan);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project {
+      min-height: 330px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .project h3 {
+      margin-bottom: 10px;
+      font-size: 1.18rem;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 6px 9px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #dbeafe;
+      background: rgba(91, 168, 255, 0.09);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+    }
+
+    .education-card {
+      padding: 22px;
+    }
+
+    .education-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .education-card p {
+      color: var(--muted);
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .score {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .score strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.15rem;
+    }
+
+    .score span {
       color: var(--muted);
       font-size: 0.82rem;
-      border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .contact-grid { grid-template-columns: 1fr; }
+    .contact {
+      padding-bottom: 72px;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+    }
+
+    .contact-note {
+      padding: 28px;
+      border-radius: 8px;
+      color: #0f172a;
+      background: linear-gradient(135deg, var(--gold), #fff0ad);
+    }
+
+    .contact-note h2 {
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .contact-note p {
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact-link {
+      min-height: 96px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 17px;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(244, 199, 107, 0.5);
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 8px;
+      color: var(--gold);
+      background: rgba(244, 199, 107, 0.12);
+    }
+
+    .contact-link span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .contact-link strong {
+      display: block;
+      color: var(--ink);
+      font-size: 0.92rem;
+      word-break: break-word;
+    }
+
+    .footer {
+      padding: 28px 0 42px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .summary-grid,
+      .education-grid,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        height: auto;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .actions,
+      .section-heading {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .metric-grid,
+      .skills-grid,
+      .timeline-item,
+      .projects,
+      .score-grid,
+      .contact-links {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-
-  <nav>
-    <div class="nav-logo">VV</div>
-    <div class="nav-links">
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Vasanth Vinayagamoorthi home">
+          <span class="brand-mark">VV</span>
+          <span>Vasanth Vinayagamoorthi</span>
+        </a>
+        <div class="nav-links">
+          <a href="#profile">Profile</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <div class="hero-tag">Available for Work</div>
-      <h1>Hi, I'm <span>Vasanth</span><br/>Vinayagamoorthi</h1>
-      <p class="hero-sub">.NET Developer crafting scalable, clean, and performant backend solutions.</p>
-      <a href="#contact" class="hero-cta">Get in touch →</a>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Senior Software Engineer</p>
+          <h1>Enterprise backend engineer for <span class="accent">resilient, secure, scalable</span> platforms.</h1>
+          <p class="lead">
+            I build and maintain enterprise-grade applications using C#, ASP.NET Core, .NET Core,
+            REST APIs, Entity Framework, SQL Server, Background Services, and Windows Services.
+            My work spans resilience management, ransomware detection and recovery, secure data
+            replication, infrastructure monitoring, and network discovery platforms.
+          </p>
+          <div class="actions">
+            <a class="button button-primary" href="assets/Vasanth_Vinayagamoorthi_Resume.pdf" download>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3v12"></path>
+                <path d="m7 10 5 5 5-5"></path>
+                <path d="M5 21h14"></path>
+              </svg>
+              Download Resume
+            </a>
+            <a class="button button-secondary" href="mailto:vinayagavasanth@gmail.com">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v16H4z"></path>
+                <path d="m22 6-10 7L2 6"></path>
+              </svg>
+              Hire Me
+            </a>
+            <a class="button button-secondary" href="https://www.linkedin.com/in/vasanth-vinayagamoorthi-a1073b200" target="_blank" rel="noreferrer">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21h-4V9Z"></path>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <aside class="profile-panel" aria-label="Professional snapshot">
+          <div class="profile-top">
+            <div class="avatar">VV</div>
+            <div>
+              <h2>Vasanth Vinayagamoorthi</h2>
+              <p>Chennai, Tamil Nadu, India</p>
+              <p>C# |.NetCore | ASP.NET Core | Web API | SQL Server | Enterprise Platforms</p>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <strong>4+</strong>
+              <span>Years of software engineering experience</span>
+            </div>
+            <div class="metric">
+              <strong>5</strong>
+              <span>Enterprise products across resilience and security</span>
+            </div>
+            <div class="metric">
+              <strong>API</strong>
+              <span>REST services, integrations, and backend modules</span>
+            </div>
+            <div class="metric">
+              <strong>Ops</strong>
+              <span>Monitoring, troubleshooting, and production support</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Profile</p>
+            <h2>Backend specialist with enterprise product depth.</h2>
+          </div>
+          <p>Resume-backed overview focused on the kind of work hiring teams care about: impact, ownership, stack depth, and delivery maturity.</p>
+        </div>
+
+        <div class="summary-grid">
+          <div class="story">
+            <p>
+              Results-driven Senior Software Engineer with 4+ years of experience designing,
+              developing, and maintaining scalable enterprise applications using C#, ASP.NET Core,
+              .NET Core, REST APIs, Entity Framework, SQL Server, and Background Services.
+            </p>
+            <p>
+              Experienced in backend application development, enterprise monitoring systems,
+              ransomware prevention platforms, secure data replication solutions, and network
+              discovery applications. Strong in Agile environments, production troubleshooting,
+              real-time communication, exception handling, and performance optimization.
+            </p>
+          </div>
+          <div class="strengths">
+            <article class="strength">
+              <h3>Enterprise resilience</h3>
+              <p>Built backend services for disaster recovery, monitoring, automation, and recovery workflows.</p>
+            </article>
+            <article class="strength">
+              <h3>Security platform engineering</h3>
+              <p>Worked on ransomware behavior detection, snapshot workflows, and recovery-oriented backend modules.</p>
+            </article>
+            <article class="strength">
+              <h3>Cross-platform systems</h3>
+              <p>Implemented replication and discovery features using SSH, SFTP, SMB, Amazon S3, TCP/IP, UDP, Nmap, and NetScan.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Technical Skills</p>
+            <h2>Stack built for backend delivery.</h2>
+          </div>
+          <p>Tools and concepts from the resume, grouped for fast scanning by recruiters and engineering leads.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill">
+            <span class="skill-kicker">Languages</span>
+            <h3>C# and SQL</h3>
+            <p>Backend application logic, database operations, query development, and production issue analysis.</p>
+          </article>
+          <article class="skill">
+            <span class="skill-kicker">Frameworks</span>
+            <h3>ASP.NET Core and .NET</h3>
+            <p>ASP.NET Core, .NET Core, .NET Framework, MVC, Entity Framework, LINQ, REST APIs, and SignalR.</p>
+          </article>
+          <article class="skill">
+            <span class="skill-kicker">Services</span>
+            <h3>Background and Windows Services</h3>
+            <p>Monitoring jobs, automation workflows, scheduling, discovery processing, and system health services.</p>
+          </article>
+          <article class="skill">
+            <span class="skill-kicker">Databases</span>
+            <h3>SQL Server and MySQL</h3>
+            <p>Schema-backed features, Entity Framework operations, LINQ queries, performance improvements, and reporting data.</p>
+          </article>
+          <article class="skill">
+            <span class="skill-kicker">Protocols and Cloud</span>
+            <h3>SSH, SFTP, SMB, S3</h3>
+            <p>Secure file transfer, cross-platform replication, Amazon S3 integration, TCP/IP, and UDP communication.</p>
+          </article>
+          <article class="skill">
+            <span class="skill-kicker">Tools</span>
+            <h3>Visual Studio to Jira</h3>
+            <p>Visual Studio, VS Code, Git, Jira, Postman, PuTTY, PowerShell, WinSCP, Antigravity, and AI-assisted tools.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Experience</p>
+            <h2>Professional experience.</h2>
+          </div>
+          <p>Perpetuuiti Technosoft Solutions Pvt Ltd, Chennai. Progressed from Software Engineer to Senior Software Engineer.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              Oct 2025 - Present
+              <span>Senior Software Engineer</span>
+            </div>
+            <div>
+              <h3>Perpetuuiti Technosoft Solutions Pvt Ltd</h3>
+              <p>Leading backend application development and enhancement activities for enterprise products.</p>
+              <ul class="bullet-list">
+                <li>Design scalable and maintainable applications using C#, ASP.NET Core, REST APIs, and SQL Server.</li>
+                <li>Drive improvements in application performance, reliability, and system scalability.</li>
+                <li>Participate in architecture discussions, technical planning, implementation, code reviews, and best practices.</li>
+                <li>Work on enterprise resilience, infrastructure monitoring, and security solutions.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              Apr 2022 - Sep 2025
+              <span>Software Engineer</span>
+            </div>
+            <div>
+              <h3>Perpetuuiti Technosoft Solutions Pvt Ltd</h3>
+              <p>Developed and maintained enterprise backend applications using C#, ASP.NET Core, and .NET technologies.</p>
+              <ul class="bullet-list">
+                <li>Designed and implemented scalable REST APIs, backend services, Background Services, and Windows Services.</li>
+                <li>Implemented database operations using Entity Framework, LINQ, SQL Server, and MySQL.</li>
+                <li>Optimized API performance and database operations to improve response time and system efficiency.</li>
+                <li>Improved application stability through exception handling, troubleshooting, logging, Agile delivery, release support, and QA/UI collaboration.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Enterprise Projects</p>
+            <!-- <h2>Product work from the resume.</h2> -->
+          </div>
+          <p>Real project domains, technologies, and responsibilities presented as premium portfolio case studies.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div>
+              <h3>Continuity Patrol</h3>
+              <p>
+                Enterprise resilience and disaster recovery management platform designed to minimize downtime and reduce data loss through monitoring, automation, and recovery capabilities.
+              </p>
+              <ul class="bullet-list">
+                <li>Developed and maintained REST APIs using ASP.NET Core and C#.</li>
+                <li>Built monitoring services, automated scheduling workflows, backend modules, and SQL Server data operations.</li>
+                <li>Improved performance, exception handling, troubleshooting, issue resolution, and deployment activities.</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">ASP.NET Core</span>
+              <span class="tag">Entity Framework</span>
+              <span class="tag">SQL Server</span>
+              <span class="tag">Background Services</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>Resilix Rewind</h3>
+              <p>
+                AI-assisted ransomware detection and recovery platform built to identify malicious behavior patterns and reduce ransomware impact through monitoring and recovery mechanisms.
+              </p>
+              <ul class="bullet-list">
+                <li>Worked primarily on Detection and Snapshot modules.</li>
+                <li>Implemented behavior-based detection mechanisms and snapshot creation workflows for secure recovery points.</li>
+                <li>Used AI-assisted development workflows with Claude AI to improve productivity and implementation efficiency.</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">ASP.NET Core</span>
+              <span class="tag">REST APIs</span>
+              <span class="tag">SQL Server</span>
+              <span class="tag">Claude AI</span>
+              <span class="tag">Security</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>Resilix Replicator</h3>
+              <p>
+                Secure cross-platform data replication platform supporting protected and reliable synchronization across multiple operating systems and environments.
+              </p>
+              <ul class="bullet-list">
+                <li>Developed replication workflows using C# and ASP.NET Core.</li>
+                <li>Integrated SSH and SFTP for secure transfer, SMB for file sharing, and Amazon S3 for storage and replication.</li>
+                <li>Worked on monitoring and automation services to improve replication reliability.</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">SSH</span>
+              <span class="tag">SFTP</span>
+              <span class="tag">SMB</span>
+              <span class="tag">Amazon S3</span>
+              <span class="tag">Background Services</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>Drift Management</h3>
+              <p>
+                Infrastructure configuration and environment monitoring platform for comparing Production and Disaster Recovery environment configurations.
+              </p>
+              <ul class="bullet-list">
+                <li>Built the initial foundation and core architecture for the platform.</li>
+                <li>Designed backend structures, APIs, and background services for monitoring operations.</li>
+                <li>Supported monitoring for OS, CPU, RAM, storage, memory utilization, database versions, and system parameters.</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">PowerShell</span>
+              <span class="tag">REST APIs</span>
+              <span class="tag">SQL Server</span>
+              <span class="tag">Monitoring</span>
+              <span class="tag">Architecture</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>ADDM</h3>
+              <p>
+                Application Dependency Discovery Management platform for identifying systems and application dependencies across enterprise environments.
+              </p>
+              <ul class="bullet-list">
+                <li>Worked primarily on the Discovery Module for local domain, subnet mask, and IP range scanning.</li>
+                <li>Integrated Nmap and NetScan for system discovery and dependency analysis.</li>
+                <li>Used SignalR for real-time IP discovery updates and TCP/UDP communication analysis.</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">SignalR</span>
+              <span class="tag">Nmap</span>
+              <span class="tag">NetScan</span>
+              <span class="tag">TCP/IP</span>
+              <span class="tag">UDP</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>Development Practices</h3>
+              <p>
+                Strong delivery habits across Agile/Scrum, API integration, exception handling, performance optimization, troubleshooting, and system monitoring.
+              </p>
+              <ul class="bullet-list">
+                <li>Collaborated with QA and UI teams for successful feature delivery.</li>
+                <li>Contributed to sprint planning, code reviews, deployments, and release management.</li>
+                <li>Used ChatGPT, OpenAI Codex, and Claude AI to accelerate implementation and analysis.</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Agile/Scrum</span>
+              <span class="tag">Code Review</span>
+              <span class="tag">Postman</span>
+              <span class="tag">Git</span>
+              <span class="tag">Jira</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Education</p>
+            <h2>Academic foundation.</h2>
+          </div>
+          <p>Computer science background with strong early academic performance.</p>
+        </div>
+
+        <div class="education-grid">
+          <article class="education-card">
+            <h3>Diploma in Computer Science Engineering</h3>
+            <p>Srinivasa Subbaraya Government Polytechnic College, Tamil Nadu</p>
+            <p>2018 - 2020</p>
+            <div class="score-grid">
+              <div class="score">
+                <strong>75%</strong>
+                <span>Diploma</span>
+              </div>
+              <div class="score">
+                <strong>78%</strong>
+                <span>Higher Secondary</span>
+              </div>
+              <div class="score">
+                <strong>90.2%</strong>
+                <span>SSLC</span>
+              </div>
+            </div>
+          </article>
+          <article class="education-card">
+            <h3>Current focus</h3>
+            <p>
+              Continuing to deepen expertise in high-availability backend systems, production troubleshooting,
+              monitoring, secure data workflows, AI-assisted development, and scalable enterprise architecture.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-layout">
+        <div class="contact-note">
+          <h2>Ready for senior .NET backend opportunities.</h2>
+          <p>
+            Open to roles involving C#, ASP.NET Core, REST APIs, SQL Server, enterprise platforms,
+            monitoring systems, resilience engineering, and secure backend services.
+          </p>
+        </div>
+
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:vinayagavasanth@gmail.com">
+            <span class="icon">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v16H4z"></path>
+                <path d="m22 6-10 7L2 6"></path>
+              </svg>
+            </span>
+            <div>
+              <span>Email</span>
+              <strong>vinayagavasanth@gmail.com</strong>
+            </div>
+          </a>
+          <a class="contact-link" href="tel:+916374924961">
+            <span class="icon">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 13a19.8 19.8 0 0 1-3.08-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11l-.9.9a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"></path>
+              </svg>
+            </span>
+            <div>
+              <span>Phone</span>
+              <strong>+91 63749 24961</strong>
+            </div>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/vasanth-vinayagamoorthi-a1073b200" target="_blank" rel="noreferrer">
+            <span class="icon">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21h-4V9Z"></path>
+              </svg>
+            </span>
+            <div>
+              <span>LinkedIn</span>
+              <strong>Vasanth Vinayagamoorthi</strong>
+            </div>
+          </a>
+          <a class="contact-link" href="https://github.com/VasanthVinayak" target="_blank" rel="noreferrer">
+            <span class="icon">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.8 1.7 3.4 1.2.1-.7.4-1.2.7-1.5-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"></path>
+              </svg>
+            </span>
+            <div>
+              <span>GitHub</span>
+              <strong>VasanthVinayak</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Built by Vasanth Vinayagamoorthi | @2022 - 2026 | Senior Software Engineer | C# and ASP.NET Core</p>
     </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <p class="section-label">What I work with</p>
-    <h2 class="section-title">Tech Stack</h2>
-    <div class="skills-grid">
-
-      <div class="skill-card">
-        <div class="skill-icon" style="background:rgba(127,119,221,0.15);">
-          <!-- .NET icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#7F77DD" stroke-width="1.8">
-            <rect x="3" y="3" width="18" height="18" rx="3"/>
-            <path d="M8 12h8M12 8v8"/>
-          </svg>
-        </div>
-        <h3>ASP.NET Core</h3>
-        <p>Web APIs & MVC</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon" style="background:rgba(29,158,117,0.15);">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1D9E75" stroke-width="1.8">
-            <ellipse cx="12" cy="12" rx="9" ry="4"/>
-            <path d="M3 12c0 2.21 4.03 4 9 4s9-1.79 9-4"/>
-            <path d="M3 6v12"/>
-            <path d="M21 6v12"/>
-          </svg>
-        </div>
-        <h3>SQL Server</h3>
-        <p>Database & queries</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon" style="background:rgba(239,159,39,0.15);">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#EF9F27" stroke-width="1.8">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
-          </svg>
-        </div>
-        <h3>Entity Framework</h3>
-        <p>ORM & migrations</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon" style="background:rgba(216,90,48,0.15);">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#D85A30" stroke-width="1.8">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </div>
-        <h3>REST APIs</h3>
-        <p>Design & integration</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon" style="background:rgba(212,83,126,0.15);">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#D4537E" stroke-width="1.8">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M8 12l2.5 2.5L16 9"/>
-          </svg>
-        </div>
-        <h3>C#</h3>
-        <p>Core language</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon" style="background:rgba(127,119,221,0.12);">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#7F77DD" stroke-width="1.8">
-            <rect x="2" y="7" width="20" height="14" rx="2"/>
-            <path d="M16 7V5a2 2 0 0 0-4 0v2"/>
-          </svg>
-        </div>
-        <h3>Azure</h3>
-        <p>Cloud deployment</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <p class="section-label">Let's connect</p>
-    <h2 class="section-title">Contact Me</h2>
-    <div class="contact-grid">
-
-      <!-- LinkedIn -->
-      <a href="https://linkedin.com/in/vasanth-vinayagamoorthi-a1073b200" target="_blank" class="contact-card linkedin">
-        <div class="contact-icon linkedin">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect x="2" y="9" width="4" height="12"/>
-            <circle cx="4" cy="4" r="2"/>
-          </svg>
-        </div>
-        <div class="contact-info">
-          <p>LinkedIn</p>
-          <span>LinkedIn</span>
-        </div>
-      </a>
-
-      <!-- GitHub -->
-      <a href="https://github.com/VasanthVinayak" target="_blank" class="contact-card github">
-        <div class="contact-icon github">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-          </svg>
-        </div>
-        <div class="contact-info">
-          <p>GitHub</p>
-          <span>Github</span>
-        </div>
-      </a>
-
-      <!-- Instagram -->
-      <a href="https://instagram.com/lakshu_vasanth" target="_blank" class="contact-card insta">
-        <div class="contact-icon insta">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="2" width="20" height="20" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-        </div>
-        <div class="contact-info">
-          <p>Instagram</p>
-          <span>lakshu_vasanth</span>
-        </div>
-      </a>
-
-      <!-- Gmail -->
-      <a href="mailto:vinayavasanth@gmail.com" class="contact-card gmail">
-        <div class="contact-icon gmail">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </div>
-        <div class="contact-info">
-          <p>Gmail</p>
-          <span>vinayagavasanth@gmail.com</span>
-        </div>
-      </a>
-
-      <!-- Phone -->
-      <a href="tel:+916374924961" class="contact-card phone">
-        <div class="contact-icon phone">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-        </div>
-        <div class="contact-info">
-          <p>Mobile</p>
-          <span>+91 6374924961</span>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <footer>
-    <p>Built by Vasanth Vinayagamoorthi &nbsp;·&nbsp; .NET Developer</p>
   </footer>
-
 </body>
 </html>
